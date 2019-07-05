@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("opt")
+
+    <div class="container" style="margin-top:5%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>:Reports</h2>
+            </div>
+        </div>
+
+        <!-- AVG Salary -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="divOpc" id="divOpcAVGWage">
+                    <div class="row">
+                        <p>Average Wage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divAVGWage">
+            <label class="control-label">Average for</label>
+            @Html.DropDownList("dpAVG", new SelectList((System.Collections.IEnumerable)ViewData["OpcAVG"], "Value", "Text"), new { @class = "form-control" })
+        </div>
+
+        <!-- By Salary -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="divOpc" id="divOpcSalary">
+                    <div class="row">
+                        <p>By Salary</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divSalary">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="control-label">Salary's Status</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.DropDownList("dpSalary", new SelectList((System.Collections.IEnumerable)ViewData["OpcSalary"], "Value", "Text"), new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Born In The Month -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="divOpc" id="divOpcBornMonth">
+                    <div class="row">
+                        <p>Born In The Month</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divBornMonth">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Select the month</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.DropDownList("dpMonth", new SelectList((System.Collections.IEnumerable)ViewData["OpcMonth"], "Value", "Text"), new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Salary Ranger -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="divOpc" id="divOpcSalRanger">
+                    <div class="row">
+                        <p>Salary Ranger</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divSalRanger">
+            <label class="control-label">Initial Salary</label>
+            @Html.TextBox("InitialSal", "0,00", new { @class = "form-control" })
+            <label class="control-label">Final Salary</label>
+            @Html.TextBox("FinalSal", "0,00", new { @class = "form-control" })
+        </div>
+
+
+
+        <!-- All Physical Persons -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="divOpc" id="divOpcAll">
+                    <div class="row">
+                        <p>All Physical Persons</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divAll">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Reports about all Physical Persons.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- By Gender -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="divOpc" id="divOpcGender">
+                    <div class="row">
+                        <p>Gender</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divGender">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Reports about Physical Persons's Gender.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <input type="submit" name="GenerateReport" value="Generate" id="GenerateReport" class="btn btn-info col-md-2 pull-right" />
+            </div>
+        </div>
+
+
+        <div id="modalReport" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Error</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="text-info"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="btnCreate">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}

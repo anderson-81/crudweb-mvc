@@ -1,0 +1,77 @@
+﻿@model crudweb_mvc.ViewModels.PersonPhysicalPersonViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="container" style="margin-top:5%;">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <h2>:Create.</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+                    {
+                        <div class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert">×</a>
+                            <h4>Validation Errors:</h4>
+                            @Html.ValidationSummary()
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Salary, new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Salary, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Birthday</label>
+                    @Html.TextBoxFor(model => model.DateBirth, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Gender</label>
+                    @Html.DropDownListFor(model => model.Genre, new List<SelectListItem> { new SelectListItem { Text = "Male", Value = "M", Selected = true }, new SelectListItem { Text = "Female", Value = "F" } }, "Select the gender...", new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success col-md-2 pull-right" id="btnCreate">Create</button>
+                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default col-md-2 pull-right" })
+                </div>
+            </div>
+        </div>
+    </div>
+}

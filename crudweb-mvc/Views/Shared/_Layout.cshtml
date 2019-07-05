@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - :Registration System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+
+    <script src="~/Scripts/jquery.maskMoney.js"></script>
+    
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    
+    <link href="~/Content/bootstrap-datepicker3.standalone.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.pt-BR.min.js"></script>
+
+    <script src="~/Scripts/crudweb-mvc.js"></script>
+
+    <script src="~/Scripts/report.js"></script>
+    <link href="~/Content/report.css" rel="stylesheet" />
+    <script src="~/Scripts/login.js"></script>
+    <link href="~/Content/footer.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">crudweb-mvc</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Registration", "Index", "PersonPhysicalPerson")</li>
+                    <li>@Html.ActionLink("Report", "Index", "Report")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderBody()
+    @Html.Partial("_Footer")
+
+
+    <script>
+        $(function () {
+            $('#Salary').maskMoney({ thousands: '', decimal: ',' });
+        })
+    </script>
+
+    <script src="~/Scripts/datetime.js"></script>
+
+
+</body>
+</html>
