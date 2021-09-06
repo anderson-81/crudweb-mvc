@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,9 +14,23 @@ namespace crudweb_mvc.Reports
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Report");
+            }
+
             if (!IsPostBack)
             {
-                int opt = int.Parse(Request.QueryString["opt"]);
+                int opt = 0;
+
+                try
+                {
+                    opt = int.Parse(Request.QueryString["opt"]);
+                }
+                catch
+                {
+                    Response.Redirect("~/Report");
+                }
 
                 //Salary Range:
                 if (opt == 1)
