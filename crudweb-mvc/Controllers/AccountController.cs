@@ -43,22 +43,45 @@ namespace crudweb_mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            /*
+            var user = new ApplicationUser() { UserName = "Administrator01" };
+
+            var result = await UserManager.CreateAsync(user, "#Administrator01");
+            if (result.Succeeded)
+            {
+                Console.WriteLine("Successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Error!");
+            }
+            */
+
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    this.CreateMessage("Successfully logged in.", "Information", 1);
                     return RedirectToLocal(returnUrl);
                 }
                 else
                 {
+                    this.CreateMessage("Error logged in.", "Error", 1);
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        private void CreateMessage(string message, string title, int show)
+        {
+            TempData["message"] = message;
+            TempData["title"] = title;
+            TempData["show"] = show;
+            PhysicalPersonController.statusClearMessage = false;
         }
 
         //
@@ -288,6 +311,7 @@ namespace crudweb_mvc.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+            this.CreateMessage("Successfully logged out.", "Information", 1);
             return RedirectToAction("Index", "Home");
         }
 
@@ -376,7 +400,8 @@ namespace crudweb_mvc.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

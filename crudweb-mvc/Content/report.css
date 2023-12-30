@@ -9,14 +9,14 @@
 }
 
     .divOpc:hover {
-        background-color: #bf5a16;
+        background-color: blue;
         color: white;
     }
 
 
 .divOpcClick {
-    background-color: #bf5a16;
-    color: lightsteelblue;
+    background-color: blue;
+    color: white;
     border: solid 5px lightgreen;
 }
 

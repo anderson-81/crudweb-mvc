@@ -1,9 +1,7 @@
 ﻿@model crudweb_mvc.Models.LoginViewModel
-
 @{
     ViewBag.Title = "Login";
 }
-
 <div class="container" style="margin-top:3%;">
     <div class="row">
         <div class="col-md-4">
@@ -13,7 +11,6 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -28,29 +25,27 @@
         </div>
     </div>
 </div>
-
-<div class="container" style="margin-top:3%;">
+<div class="container" style="margin-top:7%;">
     <div class="row">
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
         {
             @Html.AntiForgeryToken()
-            <div class="col-md-4">
+            <div class="col-md-offset-4 col-md-4 col-md-offset-4">
                 <div class="form-group">
                     <label class="control-label" for="UserName">Username</label>
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @Value = "admin" })
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @Value = "Administrator01" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Password, new { @class = "control-label" })
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Value = "admin" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Value = "#Administrator01" })
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-success col-md-3" />
+                    <input type="submit" value="Login" class="btn btn-success col-md-3 pull-right" />
                 </div>
             </div>
         }
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

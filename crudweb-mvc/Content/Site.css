@@ -69,3 +69,9 @@ td.day {
 .img {
     width: 180px;
 }
+
+.img-edition{
+    width: 120px;
+    border: 3px solid black;
+    border-radius: 5px;
+}

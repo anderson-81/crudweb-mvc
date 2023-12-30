@@ -1,6 +1,6 @@
 $.fn.datepicker.defaults.format = "dd/mm/yyyy";
 
-$('#DateBirth').datepicker({
-    format: 'dd/mm/yyyy',
+$('#Birthday').datepicker({
+    format: 'mm/dd/yyyy',
     endDate: "-18y"
 });

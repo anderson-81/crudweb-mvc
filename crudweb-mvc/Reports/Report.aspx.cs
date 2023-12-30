@@ -84,18 +84,29 @@ namespace crudweb_mvc.Reports
                     }
                 }
 
-                //All Physical Persons
+                //By Salary
                 if (opt == 2)
                 {
                     try
                     {
-                        ReportViewer1.LocalReport.ReportEmbeddedResource = "crudweb_mvc.Reports.RpPhysicalPerson.rdlc";
-                        ReportViewer1.LocalReport.ReportPath = @"Reports\RpPhysicalPerson.rdlc";
-                        ObjectDataSource1.SelectMethod = "GetPhysicalPerson";
+                        int opc_sal = int.Parse(Request.QueryString["opc_sal"]);
+
+                        ReportViewer1.LocalReport.ReportEmbeddedResource = "crudweb_mvc.Reports.RpBySalary.rdlc";
+                        ReportViewer1.LocalReport.ReportPath = @"Reports\RpBySalary.rdlc";
+
+                        if (opc_sal == 1)
+                        {
+                            ObjectDataSource1.SelectMethod = "GetPhysicalPerson_HigherSalary";
+                        }
+
+                        if (opc_sal == 2)
+                        {
+                            ObjectDataSource1.SelectMethod = "GetPhysicalPerson_LowerSalary";
+                        }
                     }
                     catch (Exception)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "alert('Error occurred while generating Physical Person's report.')", true); ;
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "alert('Error occurred while generating salary's report.')", true);
                     }
                 }
 
@@ -149,34 +160,8 @@ namespace crudweb_mvc.Reports
                     }
                 }
 
-                //By Salary
+                //By Gender
                 if (opt == 5)
-                {
-                    try
-                    {
-                        int opc_sal = int.Parse(Request.QueryString["opc_sal"]);
-
-                        ReportViewer1.LocalReport.ReportEmbeddedResource = "crudweb_mvc.Reports.RpBySalary.rdlc";
-                        ReportViewer1.LocalReport.ReportPath = @"Reports\RpBySalary.rdlc";
-
-                        if (opc_sal == 1)
-                        {
-                            ObjectDataSource1.SelectMethod = "GetPhysicalPerson_HigherSalary";
-                        }
-
-                        if (opc_sal == 2)
-                        {
-                            ObjectDataSource1.SelectMethod = "GetPhysicalPerson_LowerSalary";
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "alert('Error occurred while generating salary's report.')", true); ;
-                    }
-                }
-
-                //By Genre
-                if (opt == 6)
                 {
                     try
                     {
@@ -187,6 +172,21 @@ namespace crudweb_mvc.Reports
                     catch (Exception)
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "alert('Error occurred while generating by gender's report.')", true);
+                    }
+                }
+
+                //All Physical Persons
+                if (opt == 6)
+                {
+                    try
+                    {
+                        ReportViewer1.LocalReport.ReportEmbeddedResource = "crudweb_mvc.Reports.RpPhysicalPerson.rdlc";
+                        ReportViewer1.LocalReport.ReportPath = @"Reports\RpPhysicalPerson.rdlc";
+                        ObjectDataSource1.SelectMethod = "GetPhysicalPerson";
+                    }
+                    catch (Exception)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error", "alert('Error occurred while generating Physical Person's report.')", true);
                     }
                 }
             }

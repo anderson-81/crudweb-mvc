@@ -24,9 +24,9 @@
 
     Hide();
 
-    $("#divOpcAVGWage").addClass("divOpcClick");
+    $("#divOpcSalRanger").addClass("divOpcClick");
 
-    $("#divAVGWage").fadeIn("slow", function () {
+    $("#divSalRanger").fadeIn("slow", function () {
     });
 
     $("#opt").val(1);
@@ -67,7 +67,7 @@
 
         $("#divSalary").fadeIn("slow");
 
-        $("#opt").val(5);
+        $("#opt").val(2);
     });
 
     $("#divOpcBornMonth").click(function () {
@@ -93,7 +93,7 @@
 
         $("#divAll").fadeIn("slow");
 
-        $("#opt").val(2);
+        $("#opt").val(6);
     });
 
     $("#divOpcGender").click(function () {
@@ -106,17 +106,17 @@
 
         $("#divOpcGender").fadeIn("slow");
 
-        $("#opt").val(6);
+        $("#opt").val(5);
     });
 });
 
 
 $(function () {
-    $(' #InitialSal').maskMoney({ thousands: '', decimal: ',' });
+    $('#InitialSal').maskMoney({ thousands: '', decimal: '.' });
 })
 
 $(function () {
-    $('#FinalSal').maskMoney({ thousands: '', decimal: ',' });
+    $('#FinalSal').maskMoney({ thousands: '', decimal: '.' });
 })
 
 

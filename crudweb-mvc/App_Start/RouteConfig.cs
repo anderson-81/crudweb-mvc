@@ -16,7 +16,7 @@ namespace crudweb_mvc
             routes.MapRoute(
                 name: "Registration",
                 url: "Registration/{action}/{id}",
-                defaults: new { controller = "PersonPhysicalPerson", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "PhysicalPerson", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

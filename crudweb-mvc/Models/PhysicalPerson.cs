@@ -17,8 +17,9 @@ namespace crudweb_mvc.Models
         public int ID { get; set; }
         public int PERSON_ID { get; set; }
         public decimal SALARY { get; set; }
-        public System.DateTime DATEBIRTH { get; set; }
-        public string GENRE { get; set; }
+        public System.DateTime BIRTHDAY { get; set; }
+        public string GENDER { get; set; }
+        public byte[] PICTURE { get; set; }
     
         public virtual PERSON PERSON { get; set; }
     }

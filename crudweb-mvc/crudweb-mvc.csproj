@@ -175,8 +175,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PersonPhysicalPersonController.cs" />
+    <Compile Include="Controllers\PhysicalPersonController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Factories\PhysicalPersonFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,10 +213,15 @@
       <DependentUpon>Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\PersonPhysicalPersonViewModel.cs" />
-    <Compile Include="ViewModels\ValidDate.cs" />
+    <Compile Include="ViewModels\PhysicalPersonViewModel.cs" />
+    <Compile Include="ViewModels\Validators\CheckEmail.cs" />
+    <Compile Include="ViewModels\Validators\CheckBirthday.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\dbCrudWebMvc.mdf" />
+    <Content Include="App_Data\dbCrudWebMvc_log.ldf">
+      <DependentUpon>dbCrudWebMvc.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -228,6 +234,17 @@
     <Content Include="Content\footer.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\currency.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\report.css" />
@@ -243,23 +260,6 @@
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.pt-BR.min.js" />
     <Content Include="Scripts\bootstrap.js" />
-    <EntityDeploy Include="Models\Model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
@@ -268,6 +268,13 @@
     <Content Include="Content\bootstrap-datepicker3.min.css.map" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css.map" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\crudweb-mvc.js" />
     <Content Include="Scripts\datetime.js" />
@@ -295,20 +302,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\PersonPhysicalPerson\Edit.cshtml" />
-    <Content Include="Views\PersonPhysicalPerson\Create.cshtml" />
-    <Content Include="Views\PersonPhysicalPerson\Index.cshtml" />
+    <Content Include="Views\PhysicalPerson\Edit.cshtml" />
+    <Content Include="Views\PhysicalPerson\Create.cshtml" />
+    <Content Include="Views\PhysicalPerson\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -321,9 +320,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Reports\RpBySalary.rdlc" />
     <EmbeddedResource Include="Reports\RpByMonth.rdlc" />

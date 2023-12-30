@@ -6,21 +6,18 @@
     <title>@ViewBag.Title - :Registration System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
-
     <script src="~/Scripts/jquery.maskMoney.js"></script>
-    
+
     <script src="~/Scripts/jquery-ui.js"></script>
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-    
+
     <script src="~/Scripts/bootstrap.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    
+
     <link href="~/Content/bootstrap-datepicker3.standalone.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap-datepicker.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.pt-BR.min.js"></script>
-
     <script src="~/Scripts/crudweb-mvc.js"></script>
-
     <script src="~/Scripts/report.js"></script>
     <link href="~/Content/report.css" rel="stylesheet" />
     <script src="~/Scripts/login.js"></script>
@@ -42,27 +39,50 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Registration", "Index", "PersonPhysicalPerson")</li>
+                    <li>@Html.ActionLink("Registration", "Index", "PhysicalPerson")</li>
                     <li>@Html.ActionLink("Report", "Index", "Report")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
+
+    
+
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <!-- Modal content-->
+    <div class="modal fade" id="modalInfo" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">@TempData["title"]</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>@TempData["message"]</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnClose" class="btn btn-danger" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal content-->
+
     @RenderBody()
     @Html.Partial("_Footer")
-
-
-    <script>
-        $(function () {
-            $('#Salary').maskMoney({ thousands: '', decimal: ',' });
-        })
-    </script>
-
+    <script src="~/Scripts/currency.js"></script>
     <script src="~/Scripts/datetime.js"></script>
 
+    <script>
+        var show = '@TempData["show"]';
+        if (show === "1") {
+            $("#modalInfo").modal("show");
+        }
+    </script>
 
 </body>
 </html>
